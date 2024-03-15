@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FormRegister from "./components/FormRegister";
 
 const Register = () => {
     const handleSignUp = () => {
@@ -7,8 +8,7 @@ const Register = () => {
     };
   
     return (
-      <div 
-      className="justify-center h-[100%] py-[13vh] flex items-center">
+      <div className="justify-center h-[100%] py-[13vh] flex items-center">
         <header className="bg-zinc-200 px-8 py-10 max-w-[390px] min-w-[390px] rounded-lg">
           <h1 className="text-4xl font-bold mb-7 flex items-center justify-center">
             Regístrate
@@ -22,7 +22,7 @@ const Register = () => {
               Iniciar sesión
             </Link>
           </div>
-          <Form handleSignUp={handleSignUp} />
+          <FormRegister />
         </header>
       </div>
     );
