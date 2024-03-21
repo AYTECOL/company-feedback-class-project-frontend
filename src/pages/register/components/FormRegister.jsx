@@ -1,10 +1,27 @@
-//import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const FormRegister = ({ handleSignUp }) => {
-  
+   const {
+        register,
+        handleSubmit,
+        setValue,
+        trigger,
+        getValues,
+        formState: { errors },
+      } = useForm({
+        //resolver: yupResolver(registerValidate),
+        mode: "onChange",
+      });
+
+      const handleEmailChange = (e) => {
+        const value = e.target.value.replaceAll(" ", "");
+        setValue("email", value, { shouldValidate: true });
+      };
+
     return (
-        <form className="max-w-md mx-auto">
+        <form onSubmit={handleSubmit(handleSignUp)} className="max-w-md mx-auto">
           <div className="flex flex-col space-y-6 mt-6">
             <label htmlFor="nombreCompleto" className="text-sm font-semibold">
               Nombre completo:

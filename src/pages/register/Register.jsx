@@ -1,11 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FormRegister from "./components/FormRegister";
+import API from "../../service/API";
 
 const Register = () => {
-    const handleSignUp = () => {
-      
-    };
+  const handleSignUp = async ({ correoElectronico, contrasena, nombreCompleto, numeroCelular }) => {
+    try {
+      await (
+        API("create",{
+          username: correoElectronico,
+          password: contrasena,
+          name: nombreCompleto,
+          phone_number: numeroCelular,
+        })
+      );
+    } catch (error) {
+      errorAlert(error.message)
+    }
+  };
   
     return (
       <div className="justify-center h-[100%] py-[13vh] flex items-center">
@@ -22,7 +34,7 @@ const Register = () => {
               Iniciar sesión
             </Link>
           </div>
-          <FormRegister />
+          <FormRegister handleSignUp={handleSignUp} />
         </header>
       </div>
     );
