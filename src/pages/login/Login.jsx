@@ -4,12 +4,6 @@ import FormLogin from "./components/FormLogin";
 
 export default function Login() {
   const handleLogin = ({ email, password }) => {
-    try {
-      // dispatch(loginSession({ username: email, password: password }))
-
-    } catch (error) {
-        throw error;
-    } 
   }
   return (
     <div>

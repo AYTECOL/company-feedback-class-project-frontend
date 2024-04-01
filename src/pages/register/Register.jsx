@@ -4,14 +4,12 @@ import FormRegister from "./components/FormRegister";
 import API from "../../service/API";
 
 const Register = () => {
-  const handleSignUp = async ({ correoElectronico, contrasena, nombreCompleto, numeroCelular }) => {
+  const handleSignUp = async ({ correoElectronico, contrasena}) => {
     try {
       await (
         API("create",{
           username: correoElectronico,
           password: contrasena,
-          name: nombreCompleto,
-          phone_number: numeroCelular,
         })
       );
     } catch (error) {

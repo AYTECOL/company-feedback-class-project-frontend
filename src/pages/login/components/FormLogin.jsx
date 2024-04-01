@@ -1,16 +1,33 @@
 
 //import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
-//import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 //import BoxInput from "../../../components/initial/box-input";
 //import userIcon from "../../../assets/images/Register/user.png";
 //import passwordIcon from "../../../assets/icons/keyIcon.svg";
 //import { loginValidate } from "./schemaLogin";
 
+
 const FormLogin = ({ handleSignIn }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    trigger,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    //resolver: yupResolver(registerValidate),
+    mode: "onChange",
+  });
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value.replaceAll(" ", "");
+    setValue("email", value, { shouldValidate: true });
+  };
 
   return (
-    <form className="max-w-md mx-auto">
+    <form onSubmit={handleSubmit(handleSignIn)} className="max-w-md mx-auto">
       <div className="flex flex-col space-y-6 mt-6">
         <label htmlFor="correoElectronico" className="text-sm font-semibold">
           Correo electrónico:
