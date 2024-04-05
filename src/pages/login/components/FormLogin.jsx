@@ -8,51 +8,25 @@ import { useForm } from "react-hook-form";
 //import { loginValidate } from "./schemaLogin";
 
 
-const FormLogin = ({ handleSignIn }) => {
+const FormLogin = ({ handleLogin }) => {
   const {
     register,
     handleSubmit,
-    setValue,
-    trigger,
-    getValues,
     formState: { errors },
-  } = useForm({
-    //resolver: yupResolver(registerValidate),
-    mode: "onChange",
-  });
-
-  const handleEmailChange = (e) => {
-    const value = e.target.value.replaceAll(" ", "");
-    setValue("email", value, { shouldValidate: true });
-  };
-
+  } = useForm();
   return (
-    <form onSubmit={handleSubmit(handleSignIn)} className="max-w-md mx-auto">
-      <div className="flex flex-col space-y-6 mt-6">
-        <label htmlFor="correoElectronico" className="text-sm font-semibold">
-          Correo electrónico:
-        </label>
-        <input
-          id="correoElectronico"
-          type="text"
-          className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-        />
-  
-        <label htmlFor="contrasena" className="text-sm font-semibold">
-          Contraseña:
-        </label>
-        <input
-          id="contrasena"
-          type="password"
-          className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
-        />
+    <form onSubmit={handleSubmit(handleLogin)}>
+      <div>
+        <label>Correo Electronico:</label>
+        <input type="email" {...register('email', { required: true })} />
+        {errors.email && <span>Este campo es obligatorio</span>}
       </div>
-      <button
-        className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 mt-4 w-full"
-        type="submit"
-      >
-        Iniciar Sesión
-      </button>
+      <div>
+        <label>Contraseña:</label>
+        <input type="password" {...register('password', { required: true })} />
+        {errors.password && <span>Este campo es obligatorio</span>}
+      </div>
+        <button type="submit" style={{cursor: 'pointer'}}>Iniciar Sesión</button>
     </form>
   );
 };

@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FormLogin from "./components/FormLogin";
+import API from "../../service/API";
 
 export default function Login() {
-  const handleLogin = ({ email, password }) => {
-  }
+  const handleLogin = async({ email, password }) => {
+    try {
+      await (
+        API("signin",{
+          email: email,
+          password: password
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <div>
       <header className="text-center bg-zinc-100 shadow-lg rounded-xl p-6 max-w-[390px] min-w-[390px] box-border mx-32 flex flex-col justify-center">
@@ -21,7 +33,7 @@ export default function Login() {
           </Link>
         </div>
         <div className="flex flex-col space-y-6 mb-6 mt-6">
-          <FormLogin />
+          <FormLogin handleLogin={handleLogin} />
         </div>
       </header>
     </div>

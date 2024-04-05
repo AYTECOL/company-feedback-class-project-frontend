@@ -1,5 +1,22 @@
 import { Auth } from "aws-amplify";
 
+//Iniciar sesión
+export const loginSession = createAsyncThunk(
+  "session/login",
+  async ({ username, password }) => {
+    try {
+      const response = await Auth.signIn({
+        username,
+        password,
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
 //Registro
 export const signUpAsync = createAsyncThunk(
   "session/register",
