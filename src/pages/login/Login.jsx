@@ -2,20 +2,38 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FormLogin from "./components/FormLogin";
 import API from "../../service/API";
+import { SET_TOKEN } from "../../redux/Actions/session.actions";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function Login() {
-  const handleLogin = async({ email, password }) => {
+
+  const [token, SET_TOKEN] = useState ('')
+
+  const dispatch = useDispatch()
+
+  const handleLogin = async ({ email, password }) => {
     try {
-      await (
-        API("signin",{
-          email: email,
-          password: password
-        })
-      );
+      // Hacer la solicitud al backend para iniciar sesión
+      const response = await API("signin", {
+        email: email,
+        password: password
+      });
+
+      // Verificar si la solicitud fue exitosa
+      if (response.status === 200) {
+        // Extraer el token de la respuesta
+        const { token } = response.data;
+
+        // Almacenar el token en el estado global usando Redux
+        dispatch(SET_TOKEN(token));
+
+      } else {
+        console.error("Error de inicio de sesión:", response.data.error);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error de inicio de sesión:", error);
     }
-  };
   
   return (
     <div>
@@ -38,4 +56,5 @@ export default function Login() {
       </header>
     </div>
   );
+}
 }
