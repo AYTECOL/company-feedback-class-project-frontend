@@ -1,13 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sessionReducer from "./Reducer/session.reducer";
+import { sessionSlice } from "./reducer/session.reducer.js";
 
 const store = configureStore({
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
   reducer: {
-    session: sessionReducer,
+    session: sessionSlice,
   },
 });
 
