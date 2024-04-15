@@ -4,8 +4,13 @@ export default async function API(url, objectData) {
   try {
     const response = await axios.post(
       `https://d5q0bzq9r5.execute-api.us-east-1.amazonaws.com/dev/v1/account/${url}`,
-
-      objectData
+      objectData,
+      // {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      //   },
+      // }
     );
     sessionStorage.setItem("token", response.data.token);
     return response.data;
