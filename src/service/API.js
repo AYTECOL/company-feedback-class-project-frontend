@@ -7,8 +7,10 @@ export default async function API(url, objectData) {
 
       objectData
     );
+    sessionStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data || error.message);
   }
 }
+
