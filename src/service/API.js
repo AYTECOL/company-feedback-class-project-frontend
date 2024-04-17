@@ -5,12 +5,12 @@ export default async function API(url, objectData) {
     const response = await axios.post(
       `https://d5q0bzq9r5.execute-api.us-east-1.amazonaws.com/dev/v1/account/${url}`,
       objectData,
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      //   },
-      // }
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
     );
     sessionStorage.setItem("token", response.data.token);
     return response.data;
@@ -18,4 +18,3 @@ export default async function API(url, objectData) {
     throw new Error(error.response.data || error.message);
   }
 }
-
