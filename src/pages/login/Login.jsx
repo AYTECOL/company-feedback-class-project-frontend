@@ -2,30 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FormLogin from "./components/FormLogin";
 import API from "../../service/API";
+import "./style.css";
 
 export default function Login() {
-  const handleLogin = async({ email, password }) => {
+  const handleLogin = async ({ email, password }) => {
     try {
-      await (
-        API("signin",{
-          email: email,
-          password: password
-        })
-      );
+      await API("signin", {
+        email: email,
+        password: password,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
   const token = sessionStorage.getItem("token");
-  console.log(token)
-  
+  console.log(token);
+
   return (
-    <div>
-      <header className="text-center bg-zinc-100 shadow-lg rounded-xl p-6 max-w-[390px] min-w-[390px] box-border mx-32 flex flex-col justify-center">
-        <h1 className="text-3xl font-bold mb-7 text-center">
-          Inicia sesión en tu cuenta
-        </h1>
+    <div className="BackgroundLogin">
+      <header className="LoginHeader">
+        <h1 className="title">Inicia sesión en tu cuenta</h1>
         <div className="flex flex-row space-x-2 items-center justify-center">
           <h5 className="text-center">¿Aún no tienes una cuenta?</h5>
           <Link

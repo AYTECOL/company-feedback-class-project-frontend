@@ -1,0 +1,32 @@
+.LoginHeader {
+    background-color: #051a54;
+    padding: 20px 40px;
+    border-radius: 12px;
+    /* width: 300px; */
+    /* height: 500px; */
+}
+
+.title {
+    color:white
+}
+
+.BackgroundLogin{
+    background-image: url("https://st2.depositphotos.com/3662505/6878/i/450/depositphotos_68789187-stock-photo-students.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.loginButton{
+    cursor: pointer;
+    margin-top: 10px;
+}
