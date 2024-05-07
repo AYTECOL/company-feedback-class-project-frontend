@@ -1,40 +1,40 @@
 import React from 'react';
+import "./style.css";
 
 // Componente principal del dashboard
 export default function Dashboard() {
-  // Supongamos que tienes una lista de encuestas
   const surveys = [
     { id: 1, title: 'Encuesta 1', description: 'Descripción de la encuesta 1' },
     { id: 2, title: 'Encuesta 2', description: 'Descripción de la encuesta 2' },
     { id: 3, title: 'Encuesta 3', description: 'Descripción de la encuesta 3' },
+    { id: 4, title: 'Encuesta 4', description: 'Descripción de la encuesta 4' },
+    { id: 5, title: 'Encuesta 5', description: 'Descripción de la encuesta 5' },
   ];
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-        <h2 className="text-xl font-bold mb-4">Encuestas</h2>
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full">
-            <thead className="bg-gray-200">
+    <main className="dashboard">
+      <h1 className="title">Dashboard</h1>
+      <div className="container">
+        <h2 className="subtitle">Encuestas</h2>
+        <table className="table">
+            <thead>
               <tr>
-                <th className="px-4 py-2 text-center">ID</th>
-                <th className="px-4 py-2 text-center">Título</th>
-                <th className="px-4 py-2 text-center">Descripción</th>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
               </tr>
             </thead>
             <tbody>
               {surveys.map(survey => (
-                <tr key={survey.id}>
-                  <td className="border px-4 py-2 text-center">{survey.id}</td>
-                  <td className="border px-4 py-2 text-center">{survey.title}</td>
-                  <td className="border px-4 py-2 text-center">{survey.description}</td>
+                <tr key={survey.id} className='data'>
+                  <td>{survey.id}</td>
+                  <td>{survey.title}</td>
+                  <td>{survey.description}</td>
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+        </table>
       </div>
-    </div>
+    </main>
   );
 }
