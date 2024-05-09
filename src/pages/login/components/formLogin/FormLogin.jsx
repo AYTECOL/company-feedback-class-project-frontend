@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 //import userIcon from "../../../assets/images/Register/user.png";
 //import passwordIcon from "../../../assets/icons/keyIcon.svg";
 //import { loginValidate } from "./schemaLogin";
-import "../style.css";
+import "./style.css";
 
 const FormLogin = ({ handleLogin }) => {
   const {

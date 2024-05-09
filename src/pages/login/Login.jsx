@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FormLogin from "./components/FormLogin";
+import FormLogin from "./components/formLogin/FormLogin";
 import API from "../../service/API";
 import "./style.css";
 // import Nbar from "../../components/initial/nbar";

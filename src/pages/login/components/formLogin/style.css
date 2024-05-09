@@ -1,0 +1,11 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 4px;
+}
+
+.loginButton{
+    cursor: pointer;
+    margin-top: 10px;
+}
