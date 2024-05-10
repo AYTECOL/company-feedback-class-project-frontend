@@ -3,6 +3,7 @@
     flex-direction: column;
     border-radius: 1rem;
     align-items: center;
+    gap: 4px;
 }
 
 .inputField {
@@ -34,7 +35,7 @@
     width: 30px;
 }
 
-.loginButton{
+.registerButton{
     cursor: pointer;
     margin-top: 10px;
     border-radius: 1.5rem;
