@@ -25,7 +25,7 @@ export default function Login() {
       {/* <Nbar></Nbar> */}
       <div className="BackgroundLogin">
         <header className="LoginHeader">
-          <h1>Inicia sesión en tu cuenta</h1>
+          <h2>Inicia sesión en tu cuenta</h2>
           <div className="subtitle">
             <p>¿Aún no tienes una cuenta?</p>
               <Link className="link" to="/register">Registrate</Link>

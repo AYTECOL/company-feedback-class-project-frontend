@@ -1,11 +1,46 @@
 .form{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    border-radius: 1rem;
+    align-items: center;
+}
+.inputField {
+    background-color: #e8f0fe;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.4rem 0;
+    width: 22rem;
+    gap: 1px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.inputField input {
+    padding: 3px;
+    border: none;
+    background-color: red;
+}
+
+.image {
+    background-color: #a3d9f8;
+    padding: 2px;
+    border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.image img { 
+    width: 30px;
 }
 
 .loginButton{
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 1.5rem;
+    background: rgb(255,255,255);
+    background: linear-gradient(157deg, rgba(255,255,255,1) 0%, rgba(221,221,221,1) 70%);
+    padding: 0.8rem 1rem;
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 700;
 }

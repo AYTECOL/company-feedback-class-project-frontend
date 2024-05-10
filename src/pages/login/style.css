@@ -9,7 +9,9 @@
 .subtitle {
     display: flex;
     flex-direction: column;
-    font-size: 1rem;
+}
+.subtitle p {
+    font-size: 14px;
 }
 
 .link {
