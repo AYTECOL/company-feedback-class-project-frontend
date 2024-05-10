@@ -20,7 +20,10 @@ export default function Account() {
             </div>
             <div className='fieldProfile'>
                 <label >Contraseña</label>
-                <input type="text" />
+                <input type="password" />
+            </div>
+            <div className='updateButton'>
+                <button disabled>Actualizar</button>
             </div>
         </article>
         <article className='companyData'>
@@ -44,6 +47,9 @@ export default function Account() {
             <div className='fieldProfile'>
                 <label >Descripción de la compañia</label>
                 <input type="text" />
+            </div>
+            <div className='updateButton'>
+                <button>Actualizar</button>
             </div>
         </article>
       </div>

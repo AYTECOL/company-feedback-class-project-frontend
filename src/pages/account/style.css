@@ -48,8 +48,8 @@
     border: 1px solid #ccc;
     padding: 0.3rem 1rem;
     width: 90%;
-    border-top: 7px solid #21699f;
-    border-bottom: 7px solid #21699f;
+    border-top: 10px solid #21699f;
+    border-bottom: 10px solid #21699f;
 }
 
 .fieldProfile {
@@ -63,4 +63,25 @@
 .fieldProfile input {
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+.updateButton {
+    margin: 20px 0px;
+    display: flex;
+    justify-content: end;
+}
+
+.updateButton button {
+    cursor: pointer;
+    border: 2px solid #21699f;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+}
+
+.updateButton button:disabled{
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    cursor: default;
 }
