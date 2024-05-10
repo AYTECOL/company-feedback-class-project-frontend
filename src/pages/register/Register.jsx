@@ -20,15 +20,10 @@ const Register = () => {
   return (
     <div className="BackgroundRegister">
       <header className="RegisterHeader">
-        <h1 className="title">Regístrate</h1>
-        <div className="flex flex-row space-x-2 items-center justify-start">
-          <h5 className="text-center">¿Ya tienes una cuenta?</h5>
-          <Link
-            className="font-bold text-sky-800 hover:text-blue-950"
-            to="/login"
-          >
-            Iniciar sesión
-          </Link>
+        <h1>Regístrate</h1>
+        <div className="subtitle">
+          <p>¿Ya tienes una cuenta?</p>
+          <Link className="link" to="/login">Iniciar sesión</Link>
         </div>
         <FormRegister handleSignUp={handleSignUp} />
       </header>

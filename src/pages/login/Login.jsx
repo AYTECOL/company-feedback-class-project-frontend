@@ -22,7 +22,6 @@ export default function Login() {
 
   return (
     <>
-      {/* <Nbar></Nbar> */}
       <div className="BackgroundLogin">
         <header className="LoginHeader">
           <h2>Inicia sesión en tu cuenta</h2>
