@@ -15,7 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const pages = ["Dashboard"];
-const settings = ["Perfil", "Cuenta", "Logout"];
+const settings = ["Cuenta", "Logout"];
 
 function Nbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -61,7 +61,7 @@ function Nbar() {
                 display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: ".1rem",
                 color: "inherit",
                 textDecoration: "none",
               }}
@@ -136,7 +136,7 @@ function Nbar() {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="abrir">
+              <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 </IconButton>
