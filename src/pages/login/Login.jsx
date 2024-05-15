@@ -1,17 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormLogin from "./components/formLogin/FormLogin";
 import API from "../../service/API";
 import "./style.css";
 // import Nbar from "../../components/initial/nbar";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const handleLogin = async ({ email, password }) => {
     try {
       await API("signin", {
         email: email,
         password: password,
       });
+
+      navigate("/dashboard")  
+
     } catch (error) {
       console.error(error);
     }

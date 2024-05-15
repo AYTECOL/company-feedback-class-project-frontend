@@ -7,6 +7,7 @@ import Register from "./pages/register/Register.jsx";
 import DashBoard from "./pages/dashboard/DashBoard.jsx";
 import Account from "./pages/account/account.jsx";
 import Nbar from "./components/initial/nbar.jsx";
+import { Circles } from "react-loader-spinner";
 
 const router = createBrowserRouter([
   {
@@ -48,8 +49,20 @@ function PrivateRoute({ children }) {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Suspense
+    fallback={
+      <Circles
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="circles-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+       />
+    }
+  >
     <Nbar></Nbar>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.Suspense>
 );
