@@ -20,7 +20,7 @@ const Register = () => {
   return (
     <div className="BackgroundRegister">
       <header className="RegisterHeader">
-        <h1>Regístrate</h1>
+        <h2>Regístrate</h2>
         <div className="subtitle">
           <p>¿Ya tienes una cuenta?</p>
           <Link className="link" to="/login">Iniciar sesión</Link>

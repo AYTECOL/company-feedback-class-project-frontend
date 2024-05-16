@@ -6,16 +6,25 @@
     color: #fff;
 }
 
+.LoginHeader h2 {
+    display: flex;
+    justify-content: center;
+}
+
 .subtitle {
     display: flex;
     flex-direction: column;
 }
 .subtitle p {
     font-size: 14px;
+    display: flex;
+    justify-content: center;
 }
 
 .link {
     color: #ccc;
+    display: flex;
+    justify-content: center;
 }
 
 .link:hover {
