@@ -1,0 +1,23 @@
+.navbar {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    background: rgb(22,118,190);
+    background: linear-gradient(rgba(22,118,190,1) 0%, rgba(13,65,133,1) 180%);
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+.options {
+    display: flex;
+    gap: 5px;
+    font-size: 20px;
+}
+.items{
+    color: white;
+    cursor: pointer;
+
+}
