@@ -48,6 +48,8 @@ function PrivateRoute({ children }) {
   return children;
 }
 
+console.log(sessionStorage);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.Suspense
     fallback={

@@ -14,7 +14,7 @@ export default function Dashboard() {
   return (
     <main className="dashboard">
       <h1 className="title">Dashboard</h1>
-      <div className="container">
+      <div className="container-dashboard">
         <h2 className="subtitle">Encuestas</h2>
         <table className="table">
             <thead>
