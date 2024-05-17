@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login/Login.jsx";
 import Register from "./pages/register/Register.jsx";
@@ -8,6 +7,7 @@ import DashBoard from "./pages/dashboard/DashBoard.jsx";
 import Account from "./pages/account/account.jsx";
 import Nbar from "./components/initial/nbar.jsx";
 import { Circles } from "react-loader-spinner";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -49,11 +49,20 @@ function PrivateRoute({ children }) {
 const token = sessionStorage.getItem("token");
 
 function AppFunction () {
-  const [islogged, setIsLogged] = useState(!!token);
+  const [islogged, setIsLogged] = useState(!!sessionStorage.getItem("token"));
   
+  const handleLogin = (token) => {
+    sessionStorage.setItem("token", token);
+    setIsLogged(true);
+  };
+
   const handleLogout = () => {
     setIsLogged(false);
   };
+
+  useEffect(() => {
+    setIsLogged(!!sessionStorage.getItem("token"));
+  }, []);
 
   return (
     <React.Suspense
@@ -69,7 +78,7 @@ function AppFunction () {
         />
       }
     >
-      <Nbar islogged={token} onLogout={handleLogout} />
+      <Nbar islogged={token} onLogout={handleLogout} onLogin={handleLogin} />
       <RouterProvider router={islogged ? routerPrivate : router} />
     </React.Suspense>
   );

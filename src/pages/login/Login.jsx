@@ -1,32 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormLogin from "./components/formLogin/FormLogin";
+import { Circles } from "react-loader-spinner";
 import API from "../../service/API";
 import "./style.css";
-// import Nbar from "../../components/initial/nbar";
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async ({ email, password }) => {
+    setLoading(true);
     try {
       await API("signin", {
         email: email,
         password: password,
       });
-
       navigate("/dashboard")  
-
     } catch (error) {
+      alert("Usuario no válido");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const token = sessionStorage.getItem("token");
-  console.log(token);
-
   return (
     <>
+      {loading && (
+          <Circles
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+      )}
       <div className="BackgroundLogin">
         <header className="LoginHeader">
           <h2>Inicia sesión en tu cuenta</h2>

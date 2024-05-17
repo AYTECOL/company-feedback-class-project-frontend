@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { utilities, users, userSettings } from "../../data/links.js";
 import userIcon from "../../assets/user.svg";
 import logo from "../../assets/images/logo-company.jpeg";
 import "./style.css";
 
-export const Navbar = ({islogged,  onLogout}) => {
+export const Navbar = ({islogged, onLogout, onLogin }) => {
   const [showMenuList, setShowMenuList] = useState(false);
 
   const menuUser = () => {
@@ -16,6 +16,12 @@ export const Navbar = ({islogged,  onLogout}) => {
     onLogout();
   };
 
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      onLogin();
+    }
+  }, [onLogin]);
+
   return (
     <nav className="navbar">
       <div className="container">
@@ -26,11 +32,7 @@ export const Navbar = ({islogged,  onLogout}) => {
           <div className="options">
             {utilities.map((utility) => {
               return (
-                <a
-                  key={utility.name}
-                  href={utility.to}
-                  className="items"
-                >
+                <a key={utility.name} href={utility.to} className="items">
                   {utility.name}
                 </a>
               );
