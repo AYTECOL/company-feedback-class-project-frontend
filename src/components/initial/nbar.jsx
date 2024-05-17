@@ -5,8 +5,6 @@ import logo from "../../assets/images/logo-company.jpeg";
 import "./style.css";
 
 export const Navbar = ({islogged}) => {
-  console.log(islogged);
-
   const [showMenuList, setShowMenuList] = useState(false);
 
   const menuUser = () => {
@@ -38,25 +36,23 @@ export const Navbar = ({islogged}) => {
         <div className="user-options">
         {islogged ? (
           <>
-            <button className="user-button" onClick={menuUser}>
+            <div className="user-button" onClick={menuUser}>
               <img src={userIcon} style={{ width: "20px", height: "20px" }} alt='userIcon'/>
-            </button>
+            </div>
 
-            {showMenuList && (
-              <div className='px-4 bg-zinc-700 z-100 absolute top-[7vh] right-2 text-xs text-white py-4 flex gap-y-4 flex-col rounded-md'>
-                 {userSettings.map((user) => {
-              return (
-                <button className="flex bg-white hover:bg-blue-950 text-black hover:text-white rounded-lg px-3 py-1 items-center justify-center">
-                  <a href={user.to} key={user.name}>
-                    {user.name}
-                  </a>
-                </button>
-              );
-            })}
-              </div>
-            )}
+            <div className={`menu-list ${showMenuList ? 'show' : ''}`}>
+             { userSettings.map((user) => {
+                return (
+                  <button className="menu-options">
+                    <a href={user.to} key={user.name}>
+                      {user.name}
+                    </a>
+                  </button>
+                );
+              })}
+          </div>
           </>
-        ): (
+        ):(
           <>
             <div className="buttons"> 
               {users.map((user) => {
@@ -66,10 +62,7 @@ export const Navbar = ({islogged}) => {
                   </button>
                 );
               })}
-            </div>
-           
-
-            
+            </div> 
           </>
         )}
         </div>
