@@ -9,19 +9,21 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        <img src={logo} style={{ width: '80px', height: '80px', borderRadius: '30px'}} alt="logo" />
-        <div className="options">
-          {utilities.map((utility) => {
-            return (
-              <a
-                key={utility.name}
-                to={utility.to}
-                className="items"
-              >
-                {utility.name}
-              </a>
-            );
-          })}
+        <div className="logo-options">
+          <img src={logo} style={{ width: '80px', height: '80px', borderRadius: '30px'}} alt="logo" />
+          <div className="options">
+            {utilities.map((utility) => {
+              return (
+                <a
+                  key={utility.name}
+                  href={utility.to}
+                  className="items"
+                >
+                  {utility.name}
+                </a>
+              );
+            })}
+          </div>
         </div>
 
         <div className="user-options">
@@ -29,13 +31,11 @@ export const Navbar = () => {
           <></>
         ): (
           <>
-            <div className="hidden border-red-500 sm:block sm:flex sm:gap-x-2 sm:flex-row sm:my-2 sm:w-full sm:pr-2 gap-2"> 
+            <div className="buttons"> 
               {users.map((user) => {
                 return (
-                  <button className="flex bg-sky-800 hover:bg-blue-950 text-white rounded-lg px-3 py-1 items-center justify-center">
-                    <a to={user.to} key={user.name}>
-                      {user.name}
-                    </a>
+                  <button key={user.name}>
+                    <a href={user.to}>{user.name}</a>
                   </button>
                 );
               })}
