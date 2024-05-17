@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/login/Login.jsx";
 import Register from "./pages/register/Register.jsx";
 import DashBoard from "./pages/dashboard/DashBoard.jsx";
@@ -39,13 +39,6 @@ const routerPrivate = createBrowserRouter([
   },
 ]);
 
-function PrivateRoute({ children }) {
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
-  return children;
-}
-
 const token = sessionStorage.getItem("token");
 
 function AppFunction () {
@@ -64,6 +57,10 @@ function AppFunction () {
     setIsLogged(!!sessionStorage.getItem("token"));
   }, []);
 
+  const PrivateRoute = ({ children }) => {
+      return islogged ? children : <Navigate to="/login" />;
+  }
+
   return (
     <React.Suspense
       fallback={
@@ -79,11 +76,31 @@ function AppFunction () {
       }
     >
       <Nbar islogged={token} onLogout={handleLogout} onLogin={handleLogin} />
-      <RouterProvider router={islogged ? routerPrivate : router} />
+      <Routes>
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashBoard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <PrivateRoute>
+              <Account />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<Login onLogin={handleLogin} />} />
+      </Routes>
     </React.Suspense>
   );
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AppFunction />
+  <RouterProvider router={createBrowserRouter([{ path: "*", element: <AppFunction /> }])} />
 );
