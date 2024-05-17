@@ -1,6 +1,6 @@
 export const userSettings = [
-    { name: "Cuenta", to: "/login" },
-    { name: "Salir", to: "/register" },
+    { name: "Cuenta", to: "/account" },
+    { name: "Salir", to: "/" },
 ];
 
 export const utilities = [

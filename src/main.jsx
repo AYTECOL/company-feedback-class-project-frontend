@@ -48,8 +48,6 @@ function PrivateRoute({ children }) {
   return children;
 }
 
-console.log(sessionStorage);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.Suspense
     fallback={
@@ -64,7 +62,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
        />
     }
   >
-    <Nbar></Nbar>
+    <Nbar islogged={token} />
     <RouterProvider router={router} />
   </React.Suspense>
 );

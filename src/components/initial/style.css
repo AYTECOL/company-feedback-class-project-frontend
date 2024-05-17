@@ -44,5 +44,9 @@
 }
 .buttons button a{
     color: #000;
-
+}
+.user-button {
+    border-radius: 50px;
+    width: 30px;
+    background-color: #fff;
 }
