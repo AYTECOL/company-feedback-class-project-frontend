@@ -5,7 +5,6 @@ export const userSettings = [
 
 export const utilities = [
     { name: "Dashboard", to: "/dashboard" },
-    // { name: "Crear Traducción", to: "/translater" },
 ];
 
 export const users = [

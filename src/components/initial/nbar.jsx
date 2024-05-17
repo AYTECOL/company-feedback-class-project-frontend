@@ -4,11 +4,16 @@ import userIcon from "../../assets/user.svg";
 import logo from "../../assets/images/logo-company.jpeg";
 import "./style.css";
 
-export const Navbar = ({islogged}) => {
+export const Navbar = ({islogged,  onLogout}) => {
   const [showMenuList, setShowMenuList] = useState(false);
 
   const menuUser = () => {
     setShowMenuList(!showMenuList);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    onLogout();
   };
 
   return (
@@ -42,8 +47,17 @@ export const Navbar = ({islogged}) => {
 
             <div className={`menu-list ${showMenuList ? 'show' : ''}`}>
              { userSettings.map((user) => {
+               if (user.name === "Salir") {
                 return (
-                  <button className="menu-options">
+                  <button className="menu-options" onClick={handleLogout} key={user.name}>
+                    <a href={user.to}>
+                      {user.name}
+                    </a>
+                  </button>
+                );
+              }
+                return (
+                  <button className="menu-options" key={user.name}>
                     <a href={user.to} key={user.name}>
                       {user.name}
                     </a>

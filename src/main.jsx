@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -39,8 +39,6 @@ const routerPrivate = createBrowserRouter([
   },
 ]);
 
-const token = sessionStorage.getItem("token");
-
 function PrivateRoute({ children }) {
   if (!token) {
     return <Navigate to="/login" />;
@@ -48,21 +46,35 @@ function PrivateRoute({ children }) {
   return children;
 }
 
+const token = sessionStorage.getItem("token");
+
+function AppFunction () {
+  const [islogged, setIsLogged] = useState(!!token);
+  
+  const handleLogout = () => {
+    setIsLogged(false);
+  };
+
+  return (
+    <React.Suspense
+      fallback={
+        <Circles
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      }
+    >
+      <Nbar islogged={token} onLogout={handleLogout} />
+      <RouterProvider router={islogged ? routerPrivate : router} />
+    </React.Suspense>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.Suspense
-    fallback={
-      <Circles
-        height="80"
-        width="80"
-        color="#4fa94d"
-        ariaLabel="circles-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-       />
-    }
-  >
-    <Nbar islogged={token} />
-    <RouterProvider router={router} />
-  </React.Suspense>
+  <AppFunction />
 );
