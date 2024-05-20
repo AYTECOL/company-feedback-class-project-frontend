@@ -5,18 +5,18 @@ import { Circles } from "react-loader-spinner";
 import API from "../../service/API";
 import "./style.css";
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async ({ email, password }) => {
     setLoading(true);
     try {
-      await API("signin", {
+     await API("signin", {
         email: email,
         password: password,
       });
-      navigate("/dashboard")  
+      navigate("/dashboard");
     } catch (error) {
       alert("Usuario no válido");
       console.error(error);

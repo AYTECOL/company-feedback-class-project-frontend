@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { utilities, users, userSettings } from "../../data/links.js";
+import { useNavigate } from "react-router-dom";
 import userIcon from "../../assets/user.svg";
 import logo from "../../assets/images/logo-company.jpeg";
 import "./style.css";
 
 export const Navbar = ({islogged, onLogout, onLogin }) => {
+  const navigate = useNavigate();
   const [showMenuList, setShowMenuList] = useState(false);
 
   const menuUser = () => {
@@ -14,11 +16,16 @@ export const Navbar = ({islogged, onLogout, onLogin }) => {
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     onLogout();
+    navigate("/login");
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
   };
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
-      onLogin();
+      onLogin(sessionStorage.getItem("token"));
     }
   }, [onLogin]);
 
@@ -26,13 +33,21 @@ export const Navbar = ({islogged, onLogout, onLogin }) => {
     <nav className="navbar">
       <div className="container">
         <div className="logo-options">
-          <a href="/">
+          <a href="/" onClick={(e) => e.preventDefault()}>
             <img src={logo} style={{ width: '80px', height: '80px', borderRadius: '30px'}} alt="logo"/>
           </a>
           <div className="options">
             {utilities.map((utility) => {
               return (
-                <a key={utility.name} href={utility.to} className="items">
+                <a 
+                  key={utility.name} 
+                  href={utility.to} 
+                  className="items"  
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation(utility.to);
+                  }}
+                >
                   {utility.name}
                 </a>
               );
@@ -59,7 +74,7 @@ export const Navbar = ({islogged, onLogout, onLogin }) => {
                 );
               }
                 return (
-                  <button className="menu-options" key={user.name}>
+                  <button className="menu-options" key={user.name} onClick={() => handleNavigation(user.to)}>
                     <a href={user.to} key={user.name}>
                       {user.name}
                     </a>
@@ -73,7 +88,7 @@ export const Navbar = ({islogged, onLogout, onLogin }) => {
             <div className="buttons"> 
               {users.map((user) => {
                 return (
-                  <button key={user.name}>
+                  <button key={user.name} onClick={() => handleNavigation(user.to)}>
                     <a href={user.to}>{user.name}</a>
                   </button>
                 );

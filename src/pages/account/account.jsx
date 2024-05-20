@@ -1,12 +1,15 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import API from '../../service/API';
 import './style.css';
+import APIUPDATE from '../../service/ApiUpdate';
 
 export default function Account() {
+    const token = sessionStorage.getItem("token");
+    console.log(token);
+
     const handleUpdate = async ({ companyDescription, numberEmployees, foundation, businessName, companyName }) => {
         try {
-            await API("update", {
+            await APIUPDATE("update", {
                 companyName: companyName,
                 businessName: businessName,
                 foundation: foundation,

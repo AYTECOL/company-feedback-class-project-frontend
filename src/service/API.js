@@ -3,11 +3,14 @@ import axios from "axios";
 const URLApi = import.meta.env.VITE_BASE_URL_BACK;
 
 export default async function API(url, objectData) {
+  const token = sessionStorage.getItem("token");
+
   try {
     const response = await axios.post(`${URLApi}/account/${url}`, objectData, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        // Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     sessionStorage.setItem("token", response.data.token);
