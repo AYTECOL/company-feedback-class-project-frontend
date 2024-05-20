@@ -1,8 +1,12 @@
+nav {
+    position: sticky;
+}
 .navbar {
     padding: 0.5rem;
     display: flex;
+    position: sticky;
+    top: 0;
     flex-direction: row;
-    background: rgb(22,118,190);
     background: linear-gradient(rgba(22,118,190,1) 0%, rgba(13,65,133,1) 180%);
 }
 .container {
