@@ -85,3 +85,9 @@
     border: 2px solid #ccc;
     cursor: default;
 }
+
+.fieldProfile span {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }

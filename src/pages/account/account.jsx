@@ -1,12 +1,11 @@
 import React from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
-import './style.css';
 import APIUPDATE from '../../service/ApiUpdate';
+import { accountValidate } from './schemaAccount';
+import './style.css';
 
 export default function Account() {
-    const token = sessionStorage.getItem("token");
-    console.log(token);
-
     const handleUpdate = async ({ companyDescription, numberEmployees, foundation, businessName, companyName }) => {
         try {
             await APIUPDATE("update", {
@@ -21,11 +20,15 @@ export default function Account() {
         }
         };
 
-        const {
-            register,
-            handleSubmit,
-            formState: { errors },
-          } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(accountValidate),
+        mode: "onChange",
+    });
+
   return (
     <main className="account">
         <div className='headerText'>
@@ -54,22 +57,27 @@ export default function Account() {
             <div className='fieldProfile'>
                 <label >Nombre de la compañia</label>
                 <input type="text" {...register("companyName", { required: true })}/>
+                <span>{errors.companyName?.message}</span>
             </div>
             <div className='fieldProfile'>
                 <label >Razón social</label>
-                <input type="text" {...register("businessName", { required: true })}/>
+                <input type="number" {...register("businessName", { required: true })}/>
+                <span>{errors.businessName?.message}</span>
             </div>
             <div className='fieldProfile'>
                 <label >Fecha de creación</label>
                 <input type="text" {...register("foundation", { required: true })}/>
+                <span>{errors.foundation?.message}</span>
             </div>
             <div className='fieldProfile'>
                 <label >Número de empleados</label>
-                <input type="text" {...register("numberEmployees", { required: true })}/>
+                <input type="number" {...register("numberEmployees", { required: true })}/>
+                <span>{errors.numberEmployees?.message}</span>
             </div>
             <div className='fieldProfile'>
                 <label >Descripción de la compañia</label>
                 <input type="text" {...register("companyDescription", { required: true })}/>
+                <span>{errors.companyDescription?.message}</span>
             </div>
             <div className='updateButton'>
                 <button type='submit'>Actualizar</button>
