@@ -7,6 +7,7 @@ import DashBoard from "./pages/dashboard/DashBoard.jsx";
 import Account from "./pages/account/account.jsx";
 import Nbar from "./components/initial/nbar.jsx";
 import { Circles } from "react-loader-spinner";
+import PrivateRoute from "./components/routes/PrivateRoute.jsx";
 import "./index.css";
 
 const token = sessionStorage.getItem("token");
@@ -22,15 +23,6 @@ function App() {
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     setIsLogged(false);
-  };
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setIsLogged(!!token);
-  }, []);
-
-  const PrivateRoute = ({ children }) => {
-    return islogged ? children : <Navigate to="/login" replace />;
   };
 
   return (
