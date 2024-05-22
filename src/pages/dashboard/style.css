@@ -1,55 +1,97 @@
 .dashboard {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    flex-direction: column;
+    margin: 0;
+    padding: 0.5rem;
 }
 
 .title {
-    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    padding: 0px 34.5rem;
     color: black;
     font-size: 2rem;
     font-weight: 700;
 }
 
 .container-dashboard {
-    align-items: center;
-    width: 100%;
+    width: 200%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-.subtitle {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    font-weight: 700;
+.tabs {
+    width: 103%;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    gap: 10px;
 }
 
-.table {
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.tabs button {
+    background-color: #fff;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0px -10px 15px 1px rgba(221, 221, 221, 0.824);
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: black;
+  }
+
+.tablink {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+.tabcontent-survey {
+    display: flex;
+    padding: 2rem 0.2rem;
+    width: 110%;
+    background-color: #f1f1f1;
+}
+
+.surveys-list {
+    width: 99%;
+}
+
+.surveys-list__row td{
+    background-color: #fff;
+    padding: 10px 5px;
+    
 }
 
 th {
-    width: 25%;
+    padding: 0px 80px;
     background-color: #1976d2;
     color: #fff;
     text-align: center;
 }
 
-td {
+.button-surveys {
+    padding: 10px;
+    margin: 0px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#update {
+    background-color: #4b82b3;
+    color: #fff;
+}
+#edit {
+    background-color: #eb7855;
+    color: #fff;
+}
+#publish {
+    background-color: #4bb34b;
+    color: #fff;
+}
+
+/* td {
     width: 25%;
     padding: 0.5rem 0;
     text-align: center;
-}
-
-
-.data:nth-child(odd) {
-    background-color: #f8f3f3;
-}
-
-.data:nth-child(even) {
-    background-color: #dedcdc;
-}
+} */
