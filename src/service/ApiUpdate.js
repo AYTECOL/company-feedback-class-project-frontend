@@ -3,7 +3,7 @@ import axios from "axios";
 const URLApi = import.meta.env.VITE_BASE_URL_BACK;
 
 export default async function APIUPDATE(url, objectData) {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   try {
     const response = await axios.put(`${URLApi}/account/${url}`, objectData, {
