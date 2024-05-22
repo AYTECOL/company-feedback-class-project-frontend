@@ -12,10 +12,12 @@ export default function Login({ onLogin }) {
   const handleLogin = async ({ email, password }) => {
     setLoading(true);
     try {
-     await API("signin", {
+    const response =  await API("signin", {
         email: email,
         password: password,
       });
+      const token = response?.data?.token;
+      onLogin(token);
       navigate("/dashboard");
     } catch (error) {
       alert("Usuario no válido");

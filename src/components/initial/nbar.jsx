@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { utilities, users, userSettings } from "../../data/links.js";
+import { useEffect, useRef, useState } from "react";
+import { utilities } from "../../data/links.js";
 import { useNavigate } from "react-router-dom";
 import userIcon from "../../assets/user.svg";
 import logo from "../../assets/images/logo-company.jpeg";
 import "./style.css";
 
-export const Navbar = ({ islogged, onLogout, onLogin }) => {
+export const Navbar = ({ islogged, onLogout }) => {
   const navigate = useNavigate();
   const [showMenuList, setShowMenuList] = useState(false);
+  const menuListRef = useRef(null);
 
   const menuUser = () => {
     setShowMenuList(!showMenuList);
@@ -23,11 +24,22 @@ export const Navbar = ({ islogged, onLogout, onLogin }) => {
     navigate(path);
   };
 
-  useEffect(() => {
-    if (sessionStorage.getItem("token")) {
-      onLogin(sessionStorage.getItem("token"));
+  const handleClickOutside = (event) => {
+    if (menuListRef.current && !menuListRef.current.contains(event.target)) {
+      setShowMenuList(false);
     }
-  }, [onLogin]);
+  };
+
+  useEffect(() => {
+    if (showMenuList) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenuList]);
 
   return (
     <nav className="navbar">
@@ -69,49 +81,33 @@ export const Navbar = ({ islogged, onLogout, onLogin }) => {
                   alt="userIcon"
                 />
               </div>
-
-              <div className={`menu-list ${showMenuList ? "show" : ""}`}>
-                {userSettings.map((user) => {
-                  if (user.name === "Salir") {
-                    return (
-                      <button
-                        className="menu-options"
-                        onClick={handleLogout}
-                        key={user.name}
-                      >
-                        <a href={user.to}>{user.name}</a>
-                      </button>
-                    );
-                  }
-                  return (
-                    <button
-                      className="menu-options"
-                      key={user.name}
-                      onClick={() => handleNavigation(user.to)}
-                    >
-                      <a href={user.to} key={user.name}>
-                        {user.name}
-                      </a>
-                    </button>
-                  );
-                })}
+              <div 
+                ref={menuListRef}
+                className={`menu-list ${showMenuList ? "show" : ""}`}
+              >
+                <button 
+                  className="menu-options"
+                  onClick={() => handleNavigation('/account')}
+                >
+                  <a href="/account">Cuenta</a>
+                </button>
+                <button 
+                  className="menu-options"
+                  onClick={handleLogout}
+                >
+                  <a href="/">Salir</a>
+                </button>
               </div>
             </>
           ) : (
-            <>
-              <div className="buttons">
-                {users.map((user) => {
-                  return (
-                    <button
-                      key={user.name}
-                      onClick={() => handleNavigation(user.to)}
-                    >
-                      <a href={user.to}>{user.name}</a>
-                    </button>
-                  );
-                })}
-              </div>
-            </>
+            <div className="buttons">
+                <button onClick={() => handleNavigation('/login')}>
+                  <a href="/login">Iniciar Sesión</a>
+                </button>
+                <button onClick={() => handleNavigation('/register')}>
+                  <a href="/register">Registrarse</a>
+                </button>
+            </div>
           )}
         </div>
       </div>
