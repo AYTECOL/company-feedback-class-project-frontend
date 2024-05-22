@@ -2,7 +2,7 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import APIUPDATE from '../../service/ApiUpdate';
-import { accountValidate } from './schemaAccount';
+import { accountValidate } from '../../schemas/schemaAccount';
 import './style.css';
 
 export default function Account() {
@@ -61,7 +61,7 @@ export default function Account() {
             </div>
             <div className='fieldProfile'>
                 <label >Razón social</label>
-                <input type="number" {...register("businessName", { required: true })}/>
+                <input type="text" {...register("businessName", { required: true })}/>
                 <span>{errors.businessName?.message}</span>
             </div>
             <div className='fieldProfile'>
@@ -71,7 +71,7 @@ export default function Account() {
             </div>
             <div className='fieldProfile'>
                 <label >Número de empleados</label>
-                <input type="number" {...register("numberEmployees", { required: true })}/>
+                <input type="text" {...register("numberEmployees", { required: true })}/>
                 <span>{errors.numberEmployees?.message}</span>
             </div>
             <div className='fieldProfile'>

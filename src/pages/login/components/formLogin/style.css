@@ -45,3 +45,12 @@
     font-size: 0.9rem;
     font-weight: 700;
 }
+
+.warning-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    padding-left: 1.2rem;
+}
