@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormLogin from "./components/formLogin/FormLogin";
-import { Circles } from "react-loader-spinner";
+import LoadingSpinner from "../../components/spinner/LoadingSpinner";
 import API from "../../service/API";
 import "./style.css";
 
@@ -27,17 +27,7 @@ export default function Login({ onLogin }) {
 
   return (
     <>
-      {loading && (
-          <Circles
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-      )}
+      {loading && <LoadingSpinner />}
       <div className="BackgroundLogin">
         <header className="LoginHeader">
           <h2>Inicia sesión en tu cuenta</h2>
