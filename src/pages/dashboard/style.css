@@ -1,4 +1,4 @@
-.dashboard {
+.dashboard-survey {
     margin: 0;
     padding: 0.5rem;
 }
@@ -13,7 +13,7 @@
 }
 
 .container-dashboard {
-    width: 200%;
+    width: 100%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -48,8 +48,8 @@
 
 .tabcontent-survey {
     display: flex;
+    flex-direction: column;
     padding: 2rem 0.2rem;
-    width: 110%;
     background-color: #f1f1f1;
 }
 
@@ -77,6 +77,9 @@ th {
     font-weight: bold;
 }
 
+#show {
+    cursor: pointer;
+}
 #update {
     background-color: #4b82b3;
     color: #fff;

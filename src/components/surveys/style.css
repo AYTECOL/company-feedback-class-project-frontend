@@ -1,0 +1,23 @@
+.survey-details {
+    padding: 10px;
+}
+.container-survey {
+    background-color: #fff;
+    border-radius: 10px;
+}
+.subtitle-survey {
+    text-align: center;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    width: 95%;
+    background-color: #f1f1f1;
+}
+.details-container p {
+    border-top: 1px solid white;
+    padding: 10px;
+    margin: 0;
+}
