@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FormLogin from "./components/formLogin/FormLogin";
 import LoadingSpinner from "../../components/spinner/LoadingSpinner";
 import API from "../../service/API";
+import backgoundImage from "../../assets/images/mountain.jpg";
 import "./style.css";
 
 export default function Login({ onLogin }) {
@@ -30,7 +31,9 @@ export default function Login({ onLogin }) {
   return (
     <>
       {loading && <LoadingSpinner />}
-      <div className="BackgroundLogin">
+      <div 
+        className="BackgroundLogin" 
+        style={{  backgroundImage: `url(${backgoundImage})` }}>
         <header className="LoginHeader">
           <h2>Inicia sesión en tu cuenta</h2>
           <div className="subtitle">

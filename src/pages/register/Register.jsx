@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FormRegister from "./components/FormRegister";
 import API from "../../service/API";
+import backgoundImage from "../../assets/images/figure.jpg";
 import "./style.css";
 
 const Register = () => {
@@ -18,7 +19,10 @@ const Register = () => {
   };
 
   return (
-    <div className="BackgroundRegister">
+    <div 
+      className="BackgroundRegister"
+      style={{  backgroundImage: `url(${backgoundImage})` }}
+    >
       <header className="RegisterHeader">
         <h2>Regístrate</h2>
         <div className="subtitle">
