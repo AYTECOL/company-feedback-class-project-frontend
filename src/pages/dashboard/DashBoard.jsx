@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import APIList from '../../service/surveys/APIList';
+import APICreate from '../../service/surveys/APICreate.js';
+import APIPublish from '../../service/surveys/APIPublish.js';
 import Surveys from '../../components/surveys/Surveys.jsx';
 import Modal from 'react-modal';
 import "./style.css";
-import APICreate from '../../service/surveys/APICreate.js';
 
 export default function Dashboard() {
   const [surveys, setSurveys] = useState([]);
@@ -56,13 +57,21 @@ export default function Dashboard() {
 
   const handleSubmitSurvey = async () => {
     try {
-      // Lógica para enviar la nueva encuesta al backend
       await APICreate("create", newSurvey);
-      console.log("Encuesta creada", newSurvey);
       handleCloseModal();
       ListSurvey();
     } catch (error) {
       console.error(error.message);
+    }
+  };
+
+  const handlePublishSurvey = async (surveyId) => {
+    try {
+      await APIPublish(`publish/${surveyId}`);
+      console.log("Encuesta publicada:", surveyId);
+      ListSurvey();
+    } catch (error) {
+      console.error("Error al publicar la encuesta:", error.message);
     }
   };
 
@@ -92,7 +101,7 @@ export default function Dashboard() {
                     <td className='option-buttons'>
                         <button className='button-surveys' id='show' onClick={() => handleShowSurvey(survey)}>Ver</button>
                         <button  className='button-surveys' id='edit' to={'run/' + survey.id}><span>Editar</span></button>
-                        <button className='button-surveys' id='publish' to={'edit/' + survey.id}><span>Publicar</span></button>
+                        <button className='button-surveys' id='publish' onClick={() => handlePublishSurvey(survey.surveyId)}><span>Publicar</span></button>
                     </td>
                 </tr>
               ))}

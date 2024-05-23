@@ -97,12 +97,10 @@ th {
     font-weight: bold;
 }
 
-#show {
+#show,
+#publish,
+#edit {
     cursor: pointer;
-}
-#update {
-    background-color: #4b82b3;
-    color: #fff;
 }
 #edit,
 #survey-cancel {
