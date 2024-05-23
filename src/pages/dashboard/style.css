@@ -199,6 +199,17 @@ th {
     border: 1px solid #959595;
     border-radius: 3px;
 }
+.closed-question {
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+.closed-question label {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
 .buttons-surveys {
     display: flex;
     padding: 2rem 0.2rem;

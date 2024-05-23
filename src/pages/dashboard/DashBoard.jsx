@@ -3,6 +3,7 @@ import APIList from '../../service/surveys/APIList';
 import Surveys from '../../components/surveys/Surveys.jsx';
 import Modal from 'react-modal';
 import "./style.css";
+import APICreate from '../../service/surveys/APICreate.js';
 
 export default function Dashboard() {
   const [surveys, setSurveys] = useState([]);
@@ -56,8 +57,8 @@ export default function Dashboard() {
   const handleSubmitSurvey = async () => {
     try {
       // Lógica para enviar la nueva encuesta al backend
-      // await APICreateSurvey(newSurvey);
-      console.log(newSurvey);
+      await APICreate("create", newSurvey);
+      console.log("Encuesta creada", newSurvey);
       handleCloseModal();
       ListSurvey();
     } catch (error) {
@@ -140,7 +141,7 @@ export default function Dashboard() {
                     onChange={(e) => handleQuestionChange(index, e)}
                   />
                   {question.type === 'closed' && (
-                    <div>
+                    <div className='closed-question'>
                       <label>
                         <input type="radio" name={`question-${index}`} value="1" /> 1
                       </label>
