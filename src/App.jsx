@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/login/Login.jsx";
 import Register from "./pages/register/Register.jsx";
 import DashBoard from "./pages/dashboard/DashBoard.jsx";
+import { UserSurveys } from "./pages/surveys/UserSurveys.jsx";
 import Account from "./pages/account/account.jsx";
 import Nbar from "./components/initial/nbar.jsx";
 import { Oval } from "react-loader-spinner";
@@ -72,6 +73,7 @@ function App() {
               <Navigate to={islogged ? "/dashboard" : "/login"} replace />
             }
           />
+        <Route path="/surveys" element={<UserSurveys />} />
         </Routes>
       </React.Suspense>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import APIList from '../../service/surveys/APIList';
+import APIList from '../../service/surveys/APIList.js';
 import APICreate from '../../service/surveys/APICreate.js';
 import APIPublish from '../../service/surveys/APIPublish.js';
 import Surveys from '../../components/surveys/Surveys.jsx';
