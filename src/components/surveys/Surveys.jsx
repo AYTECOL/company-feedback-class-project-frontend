@@ -14,7 +14,11 @@ const Surveys = ({ survey }) => {
             <p><strong>Fecha de creación:</strong> {survey.dateCreated}</p>
             <p><strong>Fecha de publicación:</strong> {survey.datePublished || '-'}</p>
             <p><strong>Fecha de modificación:</strong> {survey.dateModified || '-'}</p>
-            <p><strong>Estado:</strong> {survey.published ? 'Publicada' : 'No publicada'}</p>
+            <p className='status-survey'><strong>Estado:</strong>
+              <div className={`status-container ${survey.published ? 'publish' : 'noPublish'}`}>
+                {survey.published ? 'PUBLICADA' : 'NO PUBLICADA'}
+              </div>
+            </p>
             <div>
               <p><strong>Preguntas:</strong></p>
               <ul>

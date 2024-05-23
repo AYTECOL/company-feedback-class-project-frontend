@@ -21,3 +21,28 @@
     padding: 10px;
     margin: 0;
 }
+.status-survey {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.status-container {
+    color: #fff;
+    padding: 0px 8px;
+    border-radius: 4px;
+}
+.publish {
+    background-color: #4bb34b;
+}
+.noPublish {
+    background-color: #eb7855;
+}
+ul {
+    list-style: none;
+    padding: 0px;
+}
+ul li {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
