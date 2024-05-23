@@ -150,7 +150,7 @@ th {
 }
 .modal-container {
     width: 500px;
-    height: 350px;
+    height: auto;
 }
 .modal-container h2 {
     text-align: center;
