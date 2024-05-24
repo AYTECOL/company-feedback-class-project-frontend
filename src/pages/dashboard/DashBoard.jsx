@@ -80,7 +80,6 @@ export default function Dashboard() {
   const handlePublishSurvey = async (surveyId) => {
     try {
       await APIPublish(`publish/${surveyId}`);
-      console.log("Encuesta publicada:", surveyId);
       ListSurvey();
     } catch (error) {
       console.error("Error al publicar la encuesta:", error.message);

@@ -19,7 +19,6 @@ const EditSurvey = ({ survey, onSurveyUpdated, onClose }) => {
   const handleUpdateSurvey = async () => {
     try {
       await APIUpdate(`update/${editableSurvey.surveyId}`, editableSurvey);
-      console.log("Encuesta actualizada:", editableSurvey.surveyId);
       onSurveyUpdated();
       onClose();
     } catch (error) {

@@ -28,8 +28,6 @@ function App() {
     setIsLogged(!!token); 
   }, []);
 
-  console.log('islogged', islogged)
-
   return (
     <BrowserRouter>
       <React.Suspense
