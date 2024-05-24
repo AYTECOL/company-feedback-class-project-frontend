@@ -217,25 +217,6 @@ export default function Dashboard() {
                     value={question.question}
                     onChange={(e) => handleQuestionChange(index, e)}
                   />
-                  {question.type === 'closed' && (
-                    <div className='closed-question'>
-                      <label>
-                        <input type="radio" name={`question-${index}`} value="1" /> 1
-                      </label>
-                      <label>
-                        <input type="radio" name={`question-${index}`} value="2" /> 2
-                      </label>
-                      <label>
-                        <input type="radio" name={`question-${index}`} value="3" /> 3
-                      </label>
-                      <label>
-                        <input type="radio" name={`question-${index}`} value="4" /> 4
-                      </label>
-                      <label>
-                        <input type="radio" name={`question-${index}`} value="5" /> 5
-                      </label>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
