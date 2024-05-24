@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import APIList from '../../service/surveys/APIList.js';
 import APICreate from '../../service/surveys/APICreate.js';
 import APIPublish from '../../service/surveys/APIPublish.js';
+import APIAnswers from '../../service/surveys/APIAnswers.js';
 import Surveys from '../../components/surveys/Surveys.jsx';
 import EditSurveys from '../../components/surveys/EditSurvey.jsx';
 import Modal from 'react-modal';
@@ -9,11 +10,13 @@ import "./style.css";
 
 export default function Dashboard() {
   const [surveys, setSurveys] = useState([]);
+  const [answeredSurveys, setAnsweredSurveys] = useState([]);
   const [selectedSurvey, setSelectedSurvey] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newSurvey, setNewSurvey] = useState({ name: '', questions: [], published: false });
   const [questionType, setQuestionType] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [activeTab, setActiveTab] = useState('surveys');
 
   const ListSurvey = async () => {
     try {
@@ -24,12 +27,30 @@ export default function Dashboard() {
     }
   };
 
+  const ListAnsweredSurveys = async (surveyId) => {
+    if (!surveyId) {
+      console.warn('No hay encuenstas respondidas por el momento');
+      return;
+    }
+
+    try {
+      const answeredSurveys = await APIAnswers(`answers/${surveyId}`)
+      setAnsweredSurveys(answeredSurveys);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     ListSurvey();
-  }, []);
+    if (activeTab === 'results') {
+      ListAnsweredSurveys();
+    }
+  }, [activeTab]);
 
   const handleShowSurvey = (survey) => {
     setSelectedSurvey(survey);
+    setIsEditing(false);
   };
 
   const handleEditSurvey = (survey) => {
@@ -86,43 +107,75 @@ export default function Dashboard() {
     }
   };
 
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <main className="dashboard-survey">
       <h1 className="title">Dashboard</h1>
       <div className="container-dashboard">
       <div className="tabs">
-          <button className='tablink'>Mis Encuestas</button>
-          <button className='tablink'>Resultados</button>
+          <button className='tablink' onClick={() => handleTabClick('surveys')}>Mis Encuestas</button>
+          <button className='tablink' onClick={() => handleTabClick('results')}>Resultados</button>
       </div>
         <div className='tabcontent-survey'>
-          <div className='create-survey'>
-            <button onClick={handleOpenModal}>Crear encuesta</button>
-          </div>
-          <table className='surveys-list'>
-            <thead>
-              <tr>
-                <th>Nombre de encuesta</th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {surveys.map(survey => (
-                  <tr key={survey.id} className='surveys-list__row'>
-                    <td><span>{survey.name}</span></td>
-                    <td className='option-buttons'>
-                        <button className='button-surveys' id='show' onClick={() => handleShowSurvey(survey)}>Ver</button>
-                        <button  className='button-surveys' id='edit' onClick={() => handleEditSurvey(survey)}><span>Editar</span></button>
-                        <button className='button-surveys' id='publish' onClick={() => handlePublishSurvey(survey.surveyId)}><span>Publicar</span></button>
-                    </td>
+        {activeTab === 'surveys' && (
+          <>
+            <div className='create-survey'>
+              <button onClick={handleOpenModal}>Crear encuesta</button>
+            </div>
+            <table className='surveys-list'>
+              <thead>
+                <tr>
+                  <th>Nombre de encuesta</th>
+                  <th>Opciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {selectedSurvey && isEditing ? (
-            <EditSurveys survey={selectedSurvey} onSurveyUpdated={ListSurvey} onClose={handleCloseEditSurvey}/>
-          ) : selectedSurvey ? (
-            <Surveys survey={selectedSurvey} onClose={handleCloseEditSurvey}/>
-          ) : null}
+              </thead>
+              <tbody>
+                {surveys.map(survey => (
+                    <tr key={survey.id} className='surveys-list__row'>
+                      <td><span>{survey.name}</span></td>
+                      <td className='option-buttons'>
+                          <button className='button-surveys' id='show' onClick={() => handleShowSurvey(survey)}>Ver</button>
+                          <button  className='button-surveys' id='edit' onClick={() => handleEditSurvey(survey)}><span>Editar</span></button>
+                          <button className='button-surveys' id='publish' onClick={() => handlePublishSurvey(survey.surveyId)}><span>Publicar</span></button>
+                      </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {selectedSurvey && isEditing ? (
+              <EditSurveys survey={selectedSurvey} onSurveyUpdated={ListSurvey} onClose={handleCloseEditSurvey}/>
+            ) : selectedSurvey ? (
+              <Surveys survey={selectedSurvey} onClose={handleCloseEditSurvey}/>
+            ) : null}
+          </>
+        )}
+        {activeTab === 'results' && (
+            <div className='results'>
+              {answeredSurveys.length === 0 ? (
+                <p>No hay resultados disponibles.</p>
+              ) : (
+                <table className='results-list'>
+                  <thead>
+                    <tr>
+                      <th>ID de la Encuesta</th>
+                      <th>Respuestas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {answeredSurveys.map((survey, index) => (
+                      <tr key={index}>
+                        <td>{survey.surveyId}</td>
+                        <td>{JSON.stringify(survey.answers)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
