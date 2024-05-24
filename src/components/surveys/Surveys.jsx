@@ -14,7 +14,9 @@ const Surveys = ({ survey, onClose }) => {
             </div>
           </div>
           <div className='details-container'>
-            <p><strong>ID de la encuesta:</strong> {survey.surveyId}</p>
+            <p><strong>URL de la encuesta: </strong>
+              <a href={`http://localhost:5173/surveys?email=andersonbt@unicauca.edu.co&surveyId=${survey.surveyId}`}> Link</a>
+            </p>
             <p><strong>Nombre de la encuesta:</strong> {survey.name}</p>
             <p><strong>Fecha de creación:</strong> {survey.dateCreated}</p>
             <p><strong>Fecha de publicación:</strong> {survey.datePublished || '-'}</p>
