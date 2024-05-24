@@ -35,19 +35,21 @@ export const UserSurveys = () => {
         <main className="survey-details">
           <div className="container-survey">
             <div className='header-survey'>
-              <h2 className="subtitle-survey">Detalles de la Encuesta</h2>
+              <h2 className="subtitle-survey">Encuesta</h2>
             </div>
-            <p>Nuestros clientes son primero!.</p>
-            <span>Y es por medio de la siguiente encuesta según tu esperiencia, nos evaluarás como empresa que te brindó un servicio.</span> 
-            <span>Ello nos permite mejorar dia a dia como empresa</span>
+            <div className='information-survey'>
+              <h3>¡ Nuestros clientes son primero !</h3>
+              <span>Y es por medio de la siguiente encuesta y según tu <strong>experiencia</strong>, nos evaluarás como empresa que te brindó un servicio. 
+              Ello nos permite mejorar dia a dia como empresa</span>
+            </div>
             <div className='details-container'>
-              <p><strong>Nombre de la encuesta:</strong> {survey.name}</p>
-              <div>
+              <p className='name-survey'><strong>Nombre de la encuesta:</strong> {survey.name}</p>
+              <div className='questions-survey'>
                 <p><strong>Preguntas:</strong></p>
                 <ul>
                   {survey.questions.map((questionItem, index) => (
                     <li key={index}>
-                      <p><strong>Pregunta: </strong> {questionItem.question}</p>
+                      <p><strong></strong> {questionItem.question}</p>
                       {questionItem.type === 'open' ? (
                         <input type="text" name={`question-${index}`} />
                       ) : (
@@ -73,6 +75,9 @@ export const UserSurveys = () => {
                   ))}
                 </ul>
               </div>
+            </div>
+            <div className='buttonSend'>
+              <button disabled>Enviar</button>
             </div>
           </div>
         </main>
