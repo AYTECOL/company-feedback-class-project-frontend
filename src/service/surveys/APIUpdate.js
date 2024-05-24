@@ -2,7 +2,7 @@ import axios from "axios";
 
 const URLApi = import.meta.env.VITE_BASE_URL_BACK;
 
-export default async function APIPublish(url, objectData) {
+export default async function APIUpdate(url, objectData) {
     const token = localStorage.getItem("token");
 
     try {

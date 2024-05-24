@@ -1,13 +1,18 @@
 import React from 'react';
 import './style.css'
 
-const Surveys = ({ survey }) => {
+const Surveys = ({ survey, onClose }) => {
   const questionsList = survey.questions;
 
     return (
       <main className="survey-details">
         <div className="container-survey">
-          <h2 className="subtitle-survey">Detalles de la Encuesta</h2>
+          <div className='header-survey'>
+            <h2 className="subtitle-survey">Detalles de la Encuesta</h2>
+            <div className='close-detailSurvey'>
+              <button type="button" onClick={onClose}>X</button>
+            </div>
+          </div>
           <div className='details-container'>
             <p><strong>ID de la encuesta:</strong> {survey.surveyId}</p>
             <p><strong>Nombre de la encuesta:</strong> {survey.name}</p>

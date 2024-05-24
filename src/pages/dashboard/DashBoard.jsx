@@ -3,6 +3,7 @@ import APIList from '../../service/surveys/APIList.js';
 import APICreate from '../../service/surveys/APICreate.js';
 import APIPublish from '../../service/surveys/APIPublish.js';
 import Surveys from '../../components/surveys/Surveys.jsx';
+import EditSurveys from '../../components/surveys/EditSurvey.jsx';
 import Modal from 'react-modal';
 import "./style.css";
 
@@ -12,6 +13,7 @@ export default function Dashboard() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newSurvey, setNewSurvey] = useState({ name: '', questions: [], published: false });
   const [questionType, setQuestionType] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const ListSurvey = async () => {
     try {
@@ -30,6 +32,11 @@ export default function Dashboard() {
     setSelectedSurvey(survey);
   };
 
+  const handleEditSurvey = (survey) => {
+    setSelectedSurvey(survey);
+    setIsEditing(true);
+  };
+
   const handleOpenModal = () => {
     setModalIsOpen(true);
   };
@@ -37,6 +44,11 @@ export default function Dashboard() {
   const handleCloseModal = () => {
     setModalIsOpen(false);
     setNewSurvey({ name: '', questions: [], published: false });
+  };
+
+  const handleCloseEditSurvey = () => {
+    setSelectedSurvey(null);
+    setIsEditing(false);
   };
 
   const handleInputChange = (e) => {
@@ -100,14 +112,18 @@ export default function Dashboard() {
                     <td><span>{survey.name}</span></td>
                     <td className='option-buttons'>
                         <button className='button-surveys' id='show' onClick={() => handleShowSurvey(survey)}>Ver</button>
-                        <button  className='button-surveys' id='edit' to={'run/' + survey.id}><span>Editar</span></button>
+                        <button  className='button-surveys' id='edit' onClick={() => handleEditSurvey(survey)}><span>Editar</span></button>
                         <button className='button-surveys' id='publish' onClick={() => handlePublishSurvey(survey.surveyId)}><span>Publicar</span></button>
                     </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {selectedSurvey && <Surveys survey={selectedSurvey} />}
+          {selectedSurvey && isEditing ? (
+            <EditSurveys survey={selectedSurvey} onSurveyUpdated={ListSurvey} onClose={handleCloseEditSurvey}/>
+          ) : selectedSurvey ? (
+            <Surveys survey={selectedSurvey} onClose={handleCloseEditSurvey}/>
+          ) : null}
         </div>
       </div>
 
