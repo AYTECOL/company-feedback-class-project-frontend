@@ -55,19 +55,19 @@ export const UserSurveys = () => {
                       ) : (
                         <div className='closed-question'>
                           <label>
-                            <input type="radio" name={`question-${index}`} value="1" /> 1
+                            <input type="radio" name={`question-${index}`} value="1" /> Muy insatisfecho (1)
                           </label>
                           <label>
-                            <input type="radio" name={`question-${index}`} value="2" /> 2
+                            <input type="radio" name={`question-${index}`} value="2" /> Insatisfecho (2)
                           </label>
                           <label>
-                            <input type="radio" name={`question-${index}`} value="3" /> 3
+                            <input type="radio" name={`question-${index}`} value="3" /> Ni insatisfecho ni satisfecho (3)
                           </label>
                           <label>
-                            <input type="radio" name={`question-${index}`} value="4" /> 4
+                            <input type="radio" name={`question-${index}`} value="4" /> Satisfecho (4)
                           </label>
                           <label>
-                            <input type="radio" name={`question-${index}`} value="5" /> 5
+                            <input type="radio" name={`question-${index}`} value="5" /> Muy satisfecho (5)
                           </label>
                         </div>
                       )}
