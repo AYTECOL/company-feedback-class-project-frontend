@@ -17,6 +17,7 @@ export default function Dashboard() {
   const [questionType, setQuestionType] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState('surveys');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const ListSurvey = async () => {
     try {
@@ -88,7 +89,28 @@ export default function Dashboard() {
     setNewSurvey({ ...newSurvey, questions: updatedQuestions });
   };
 
+  const validateSurvey = () => {
+    if (!newSurvey.name) {
+      return "El nombre de la encuesta es requerido.";
+    }
+    if (newSurvey.questions.length === 0) {
+      return "Debes agregar al menos una pregunta.";
+    }
+    for (let question of newSurvey.questions) {
+      if (!question.question) {
+        return "Todas las preguntas deben tener un texto.";
+      }
+    }
+    return null;
+  };
+
   const handleSubmitSurvey = async () => {
+    const error = validateSurvey();
+    if (error) {
+      setErrorMessage(error);
+      return;
+    }
+
     try {
       await APICreate("create", newSurvey);
       handleCloseModal();
@@ -192,6 +214,7 @@ export default function Dashboard() {
           </div>
           <h2>Crear Nueva Encuesta</h2>
           <form>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
             <div className='name-survey'>
               <label>Nombre de Encuesta</label>
               <input type="text" name="name" value={newSurvey.name} onChange={handleInputChange} />
