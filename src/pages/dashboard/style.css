@@ -97,6 +97,11 @@ th {
     font-weight: bold;
 }
 
+#edit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 #show,
 #publish,
 #edit {
@@ -217,4 +222,21 @@ th {
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+}
+.statusContainer {
+    color: #fff;
+    padding: 0px 8px;
+    border-radius: 4px;
+    width: 60%;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.publish,
+.updateSurvey {
+    background-color: #4bb34b;
+}
+.noPublish,
+.closeSurvey {
+    background-color: #eb7855;
 }

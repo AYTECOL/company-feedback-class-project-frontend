@@ -151,6 +151,7 @@ export default function Dashboard() {
               <thead>
                 <tr>
                   <th>Nombre de encuesta</th>
+                  <th>Estado</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
@@ -158,9 +159,14 @@ export default function Dashboard() {
                 {surveys.map(survey => (
                     <tr key={survey.id} className='surveys-list__row'>
                       <td><span>{survey.name}</span></td>
+                      <td className='surveyStatus'>
+                        <div className={`statusContainer ${survey.published ? 'publish' : 'noPublish'}`}>
+                          {survey.published ? 'PUBLICADA' : 'NO PUBLICADA'}
+                        </div>
+                      </td>
                       <td className='option-buttons'>
                           <button className='button-surveys' id='show' onClick={() => handleShowSurvey(survey)}>Ver</button>
-                          <button  className='button-surveys' id='edit' onClick={() => handleEditSurvey(survey)}><span>Editar</span></button>
+                          <button  className='button-surveys' id='edit' onClick={() => handleEditSurvey(survey)} disabled={survey.published}><span>Editar</span></button>
                           <button className='button-surveys' id='publish' onClick={() => handlePublishSurvey(survey.surveyId)}><span>Publicar</span></button>
                       </td>
                   </tr>
