@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import APIUPDATE from '../../service/ApiUpdate';
 import { accountValidate } from '../../schemas/schemaAccount';
+import { UserContext } from "../../context/UserContext"; 
 import './style.css';
 
 export default function Account() {
+    const { user } = useContext(UserContext);
+    console.log(user)
+
     const handleUpdate = async ({ companyDescription, numberEmployees, foundation, businessName, companyName }) => {
         try {
             await APIUPDATE("update", {
@@ -68,11 +72,11 @@ export default function Account() {
                 <h3>Datos de inicio de sesión</h3>
                 <div className='fieldProfile'>
                     <label >Correo electrónico</label>
-                    <input type="text" />
+                    <input type="text" value={user.email} readOnly />
                 </div>
                 <div className='fieldProfile'>
                     <label >Contraseña</label>
-                    <input type="password" />
+                    <input type="password"  value={user.password} readOnly />
                 </div>
                 <div className='updateButton'>
                     <button disabled>Actualizar</button>
